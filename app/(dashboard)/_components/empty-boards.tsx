@@ -2,18 +2,17 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useMutation } from "convex/react";
+import { UseApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
 import { useOrganization } from "@clerk/nextjs";
 
 export const EmptyBoards = () => {
   const { organization } = useOrganization();
-  const createBoard = useMutation(api.board.create);
+  const { mutate, pending } = UseApiMutation(api.board.create);
 
   const onClick = () => {
     if (!organization) return;
-
-    createBoard({
+    mutate({
       orgId: organization.id,
       title: "Untitled board",
     });
@@ -27,7 +26,7 @@ export const EmptyBoards = () => {
         Start by creating a board for your workflow
       </p>
       <div className="mt-6">
-        <Button onClick={onClick} size="lg">
+        <Button disabled={pending} onClick={onClick} size="lg">
           Create board
         </Button>
       </div>
