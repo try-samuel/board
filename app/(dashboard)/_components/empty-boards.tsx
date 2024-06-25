@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { toast } from "sonner";
 import { UseApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
 import { useOrganization } from "@clerk/nextjs";
@@ -15,7 +16,13 @@ export const EmptyBoards = () => {
     mutate({
       orgId: organization.id,
       title: "Untitled board",
-    });
+    })
+      .then((id) => {
+        toast.success("Board created successfully");
+      })
+      .catch(() => {
+        toast.error("Failed to create board");
+      });
   };
 
   return (
