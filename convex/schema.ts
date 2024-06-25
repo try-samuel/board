@@ -8,5 +8,10 @@ export default defineSchema({
     authorId: v.string(),
     authorName: v.string(),
     imaggeUrl: v.string(),
-  }),
+  })
+    .index("by_org", ["orgId"])
+    .searchIndex("search_title", {
+      searchField: "title",
+      filterFields: ["orgId"],
+    }),
 });
