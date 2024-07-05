@@ -6,6 +6,7 @@ import { EmptyBoards } from "./empty-boards";
 import { EmptyFavorite } from "./empty-favorite";
 import { EmptySearch } from "./empty-search";
 import { BoardCard } from "./board-card";
+import { NewBoardButton } from "./new-board-button";
 
 interface BoardListProps {
   orgId: string;
@@ -40,6 +41,7 @@ export const BoardList = ({ orgId, query }: BoardListProps) => {
         {query.favorites ? "Favorite Boards" : "Team Boards"}
       </h2>
       <div className="grid sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 mt-8 pb-10">
+        <NewBoardButton orgId={orgId} />
         {data?.map((board) => (
           <BoardCard
             key={board._id}
