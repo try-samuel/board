@@ -8,8 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Link2 } from "lucide-react";
+import { Link2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { UseApiMutation } from "@/hooks/use-api-mutation";
+import { api } from "@/convex/_generated/api";
+import { ConfirmModal } from "./confirm-modal";
+import { Button } from "./ui/button";
 
 interface ActionProps {
   children: React.ReactNode;
@@ -26,6 +30,8 @@ export const Actions = ({
   id,
   title,
 }: ActionProps) => {
+  const { mutate, pending } = UseApiMutation(api.board.remove);
+
   const onCopy = () => {
     navigator.clipboard
       .writeText(`${window.location.origin}/board/${id}`)
@@ -34,6 +40,16 @@ export const Actions = ({
       })
       .catch(() => {
         toast.error("Failed to copy link");
+      });
+  };
+
+  const onDelete = () => {
+    mutate({ id })
+      .then(() => {
+        toast.success("Board deleted");
+      })
+      .catch(() => {
+        toast.error("Failed to delete board");
       });
   };
 
@@ -50,6 +66,21 @@ export const Actions = ({
           <Link2 className="h-4 w-4 mr-2" />
           Copy board link
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <ConfirmModal
+          header="Delete board?"
+          description="This action will delete the board and all of it's content."
+          disabled={pending}
+          onConfirm={onDelete}
+        >
+          <Button
+            variant="ghost"
+            className="p-3 font-normal w-full text-sm justify-start"
+          >
+            <Trash2 className="h-4 w-4 mr-2 text-red-600" />
+            Delete board
+          </Button>
+        </ConfirmModal>
       </DropdownMenuContent>
     </DropdownMenu>
   );
