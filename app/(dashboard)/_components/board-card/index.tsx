@@ -5,10 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
+import { api } from "@/convex/_generated/api";
+import { UseApiMutation } from "@/hooks/use-api-mutation";
 import { Overlay } from "./overlay";
 import { Footer } from "./footer";
 import { Actions } from "@/components/actins";
 import { MoreHorizontal } from "lucide-react";
+import { toast } from "sonner";
 
 interface BoardCardProps {
   id: string;
@@ -35,6 +38,25 @@ export const BoardCard = ({
   const authorLabel = userId === authorId ? "You" : authorName;
   const createdAtLabel = formatDistanceToNow(createdAt, { addSuffix: true });
 
+  const { mutate: onFavorite, pending: pendingFavorite } = UseApiMutation(
+    api.board.favorite
+  );
+  const { mutate: onUnfavorite, pending: pendingUnfavorite } = UseApiMutation(
+    api.board.unfavorite
+  );
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      onUnfavorite({ id }).catch(() => {
+        toast.error("Failed to remove favorite");
+      });
+    } else {
+      onFavorite({ id, orgId }).catch(() => {
+        toast.error("Failed to add favorite");
+      });
+    }
+  };
+
   return (
     <Link href={`board/${id}`}>
       <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden">
@@ -52,8 +74,8 @@ export const BoardCard = ({
           title={title}
           authorLabel={authorLabel}
           createdAtLabel={createdAtLabel}
-          onClick={() => {}}
-          disabled={false}
+          onClick={toggleFavorite}
+          disabled={pendingFavorite || pendingUnfavorite}
         />
       </div>
     </Link>
