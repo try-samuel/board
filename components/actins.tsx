@@ -1,4 +1,4 @@
-"use clients";
+"use client";
 
 import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
 import {
@@ -12,8 +12,8 @@ import { Link2, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { UseApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
-import { ConfirmModal } from "./confirm-modal";
-import { Button } from "./ui/button";
+import { ConfirmModal } from "@/components/confirm-modal";
+import { Button } from "@/components/ui/button";
 import { useRenameModal } from "@/store/use-rename-modal";
 
 interface ActionProps {
@@ -68,18 +68,16 @@ export const Actions = ({
           <Link2 className="h-4 w-4 mr-2" />
           Copy board link
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem
           className="p-3 cursor-pointer"
           onClick={() => onOpen(id, title)}
         >
           <Pencil className="h-4 w-4 mr-2" />
-          Rename
+          Rename board
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <ConfirmModal
           header="Delete board?"
-          description="This action will delete the board and all of it's content."
+          description="This action will delete the board and all of its content."
           disabled={pending}
           onConfirm={onDelete}
         >

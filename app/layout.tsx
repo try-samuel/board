@@ -23,8 +23,8 @@ export default function RootLayout({
         {
           <ConvexClientProvider>
             <Toaster />
-            {children}
             <ModalProvider />
+            {children}
           </ConvexClientProvider>
         }
       </body>

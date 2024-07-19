@@ -6,7 +6,7 @@ const defaultValues = {
 };
 
 interface IRenameModal {
-  isOpen: Boolean;
+  isOpen: boolean;
   initialValues: typeof defaultValues;
   onOpen: (id: string, title: string) => void;
   onClose: () => void;
@@ -14,6 +14,7 @@ interface IRenameModal {
 
 export const useRenameModal = create<IRenameModal>((set) => ({
   isOpen: false,
+  initialValues: defaultValues,
   onOpen: (id, title) =>
     set({
       isOpen: true,
@@ -24,5 +25,4 @@ export const useRenameModal = create<IRenameModal>((set) => ({
       isOpen: false,
       initialValues: defaultValues,
     }),
-  initialValues: defaultValues,
 }));

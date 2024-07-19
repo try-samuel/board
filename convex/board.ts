@@ -64,13 +64,13 @@ export const remove = mutation({
 export const update = mutation({
   args: { id: v.id("boards"), title: v.string() },
   handler: async (ctx, args) => {
-    const title = args.title.trim();
     const identity = await ctx.auth.getUserIdentity();
 
     if (!identity) {
       throw new Error("Unauthorized");
     }
 
+    const title = args.title.trim();
     if (!title) {
       throw new Error("Title is required");
     }
