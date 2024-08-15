@@ -11,7 +11,7 @@ interface CanvasProps {
 export const Canvas = ({ boardId }: CanvasProps) => {
   return (
     <section>
-      <Info />
+      <Info boardId={boardId} />
       <Participants />
       <Toolbar />
     </section>
