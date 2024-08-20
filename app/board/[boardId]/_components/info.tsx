@@ -7,9 +7,11 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Hint } from "@/components/hint";
 import { api } from "@/convex/_generated/api";
+import { Actions } from "@/components/actins";
 import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
 import { useRenameModal } from "@/store/use-rename-modal";
+import { Menu } from "lucide-react";
 
 interface InfoProps {
   boardId: string;
@@ -51,13 +53,25 @@ export const Info = ({ boardId }: InfoProps) => {
         </Button>
       </Hint>
       <Tabseparator />
-      <Button
-        variant="boardActive"
-        className="text-base font-normal px-2"
-        onClick={() => onOpen(data._id, data.title)}
-      >
-        {data.title}
-      </Button>
+      <Hint label="Edit title" side="bottom" sideOffset={10}>
+        <Button
+          variant="board"
+          className="text-base font-normal px-2"
+          onClick={() => onOpen(data._id, data.title)}
+        >
+          {data.title}
+        </Button>
+      </Hint>
+      <Tabseparator />
+      <Actions id={data._id} title={data.title} side="bottom" sideOffset={10}>
+        <div>
+          <Hint label="Main menu" side="bottom" sideOffset={10}>
+            <Button size="icon" variant={"board"}>
+              <Menu />
+            </Button>
+          </Hint>
+        </div>
+      </Actions>
     </section>
   );
 };
