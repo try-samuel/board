@@ -64,12 +64,12 @@ export const Toolbar = () => {
           onClick={() => {}}
           isDisabled={true}
         />
-        <ToolButton
+        {/* <ToolButton
           label="Clear"
           icon={MousePointer2}
           onClick={() => {}}
           isActive={true}
-        />
+        /> */}
       </div>
     </section>
   );
