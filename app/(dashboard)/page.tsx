@@ -18,7 +18,13 @@ const Dashboardpage = ({ searchParams }: DashboardpageProps) => {
       {!organization ? (
         <EmptyOrg />
       ) : (
-        <BoardList orgId={organization.id} query={searchParams} />
+        <BoardList
+          orgId={organization.id}
+          query={{
+            search: searchParams.search,
+            favorites: searchParams.favorites ? "true" : undefined,
+          }}
+        />
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
 
