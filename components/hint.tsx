@@ -24,10 +24,10 @@ export const Hint = ({
 }: HintProps) => {
   return (
     <TooltipProvider>
-      <Tooltip delayDuration={200}>
+      <Tooltip delayDuration={100}>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent
-          className="text-white bg-black border-black"
+          className="text-white text-xs bg-black border-black"
           side={side}
           align={align}
           sideOffset={sideOffset}
