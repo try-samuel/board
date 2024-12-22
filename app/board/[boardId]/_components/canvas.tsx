@@ -1,7 +1,7 @@
 "use client";
 
 import { nanoid } from "nanoid";
-import { use, useCallback, useState } from "react";
+import { use, useCallback, useMemo, useState } from "react";
 
 import {
   useHistory,
@@ -9,6 +9,7 @@ import {
   useCanUndo,
   useMutation,
   useStorage,
+  useOthersMapped,
 } from "@/liveblocks.config";
 import {
   Camera,
@@ -23,7 +24,7 @@ import { Info } from "./info";
 import { Participants } from "./participants";
 import { Toolbar } from "./toolbar";
 import { CursorsPresence } from "./cursors-presence";
-import { pointerEventToCanvasPoint } from "@/lib/utils";
+import { connectionIdToColor, pointerEventToCanvasPoint } from "@/lib/utils";
 import { LiveObject } from "@liveblocks/client";
 import { LayerPreview } from "./layer-preview";
 
@@ -123,6 +124,22 @@ export const Canvas = ({ boardId }: CanvasProps) => {
     [camera, canvasState, history, insertLayer]
   );
 
+  const selections = useOthersMapped((other) => other.presence.selection);
+
+  const layerIdToColorSelection = useMemo(() => {
+    const layerIdToColorSelection: Record<string, string> = {};
+
+    for (const user of selections) {
+      const [connectionId, selection] = user;
+
+      for (const layerId of selection) {
+        layerIdToColorSelection[layerId] = connectionIdToColor(connectionId);
+      }
+    }
+
+    return layerIdToColorSelection;
+  }, [selections]);
+
   return (
     <section>
       <Info boardId={boardId} />
@@ -152,7 +169,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
               key={layerId}
               id={layerId}
               onLayerPointerDown={() => {}}
-              selectionColor="#000"
+              selectionColor={layerIdToColorSelection[layerId]}
             />
           ))}
           <CursorsPresence />
