@@ -30,6 +30,7 @@ export const SelectionBox = memo(
 
     return (
       <>
+        {/* Selection box outline */}
         <rect
           className="fill-transparent stroke-blue-500 stroke-1 pointer-events-none"
           style={{
@@ -42,6 +43,7 @@ export const SelectionBox = memo(
         />
         {isShowingHandles && (
           <>
+            {/* Top-left handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -54,9 +56,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
-                // TODO:  Add resize handler
+                onResizeHandlePointerDown(Side.Top + Side.left, bounds);
               }}
             />
+            {/* Top-center handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -69,9 +72,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
-                // TODO:  Add resize handler
+                onResizeHandlePointerDown(Side.Top, bounds);
               }}
             />
+            {/* Top-right handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -84,8 +88,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
+                onResizeHandlePointerDown(Side.Top + Side.Right, bounds);
               }}
             />
+            {/* Middle-right handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -98,8 +104,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
+                onResizeHandlePointerDown(Side.Right, bounds);
               }}
             />
+            {/* Bottom-right handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -112,8 +120,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
+                onResizeHandlePointerDown(Side.Bottom + Side.Right, bounds);
               }}
             />
+            {/* Bottom-center handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -126,9 +136,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
-                // TODO:  Add resize handler
+                onResizeHandlePointerDown(Side.Bottom, bounds);
               }}
             />
+            {/* Bottom-left handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -141,9 +152,10 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
-                // TODO:  Add resize handler
+                onResizeHandlePointerDown(Side.Bottom + Side.left, bounds);
               }}
             />
+            {/* Middle-left handle */}
             <rect
               className="fill-white stroke-1 stroke-blue-500"
               x={0}
@@ -156,7 +168,7 @@ export const SelectionBox = memo(
               }}
               onPointerDown={(e) => {
                 e.stopPropagation();
-                // TODO:  Add resize handler
+                onResizeHandlePointerDown(Side.left, bounds);
               }}
             />
           </>
