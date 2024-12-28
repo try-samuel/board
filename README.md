@@ -1,3 +1,3 @@
-## BOARD
+## Cluster
 
-NEXTJS + CONVEX + CLERK
+NEXTJS + CONVEX + CLERK + liveblocks

@@ -6,7 +6,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Link2, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -48,10 +47,10 @@ export const Actions = ({
   const onDelete = () => {
     mutate({ id })
       .then(() => {
-        toast.success("Board deleted");
+        toast.success("Cluster deleted");
       })
       .catch(() => {
-        toast.error("Failed to delete board");
+        toast.error("Failed to delete cluster");
       });
   };
 
@@ -66,18 +65,18 @@ export const Actions = ({
       >
         <DropdownMenuItem className="p-3 cursor-pointer" onClick={onCopy}>
           <Link2 className="h-4 w-4 mr-2" />
-          Copy board link
+          Copy cluster link
         </DropdownMenuItem>
         <DropdownMenuItem
           className="p-3 cursor-pointer"
           onClick={() => onOpen(id, title)}
         >
           <Pencil className="h-4 w-4 mr-2" />
-          Rename board
+          Rename cluster
         </DropdownMenuItem>
         <ConfirmModal
-          header="Delete board?"
-          description="This action will delete the board and all of its content."
+          header="Delete cluster?"
+          description="This action will delete the cluster and all of its content."
           disabled={pending}
           onConfirm={onDelete}
         >
@@ -86,7 +85,7 @@ export const Actions = ({
             className="p-3 font-normal w-full text-sm justify-start"
           >
             <Trash2 className="h-4 w-4 mr-2 text-red-600" />
-            Delete board
+            Delete cluster
           </Button>
         </ConfirmModal>
       </DropdownMenuContent>

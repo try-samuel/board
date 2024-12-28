@@ -8,8 +8,8 @@ import { ModalProvider } from "@/providers/modal-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Board",
-  description: "Collaborate with your team in real-time",
+  title: "Cluster",
+  description: "Collaborate with your gees in real-time",
 };
 
 export default function RootLayout({

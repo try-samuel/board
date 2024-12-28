@@ -19,14 +19,14 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
   const onClick = () => {
     mutate({
       orgId,
-      title: "Untitled board",
+      title: "Untitled cluster",
     })
       .then((id) => {
         toast.success("Board created Successfully");
         router.push(`/board/${id}`);
       })
       .catch(() => {
-        toast.error("Failed to create board");
+        toast.error("Failed to create cluster");
       });
   };
 
@@ -43,7 +43,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
       >
         <div />
         <Plus className="w-12 h-12 text-white stroke-1" />
-        <p className="text-xs text-white font-light">Create New Board</p>
+        <p className="text-xs text-white font-light">Create New Cluster</p>
       </button>
     </>
   );

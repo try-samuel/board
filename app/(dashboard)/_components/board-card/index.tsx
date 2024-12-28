@@ -9,7 +9,7 @@ import { api } from "@/convex/_generated/api";
 import { UseApiMutation } from "@/hooks/use-api-mutation";
 import { Overlay } from "./overlay";
 import { Footer } from "./footer";
-import { Actions } from "@/components/actins";
+import { Actions } from "@/components/actions";
 import { MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
 

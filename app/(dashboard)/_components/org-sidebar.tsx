@@ -21,9 +21,9 @@ export const OrgSidebar = () => {
     <div className="hidden lg:flex flex-col space-y-6 w-[260px] pl-5 pt-5">
       <Link href={"/"}>
         <div className="flex items-center gap-x-2">
-          <Image src="/logo.svg" alt="Logo" height={60} width={60} />
+          <Image src="/logo.svg" alt="Logo" height={30} width={30} />
           <span className={cn("font-semibold text-2xl", font.className)}>
-            Board
+            Cluster
           </span>
         </div>
       </Link>
@@ -57,7 +57,7 @@ export const OrgSidebar = () => {
         >
           <Link href={"/"}>
             <LayoutDashboard className="w-4 h-4 mr-2" />
-            Team boards
+            Team clusters
           </Link>
         </Button>
         <Button
@@ -73,7 +73,7 @@ export const OrgSidebar = () => {
             }}
           >
             <Star className="w-4 h-4 mr-2" />
-            Favourite boards
+            Favourite clusters
           </Link>
         </Button>
       </div>

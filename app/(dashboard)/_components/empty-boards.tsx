@@ -17,27 +17,29 @@ export const EmptyBoards = () => {
     if (!organization) return;
     mutate({
       orgId: organization.id,
-      title: "Untitled board",
+      title: "Untitled cluster",
     })
       .then((id) => {
-        toast.success("Board created successfully");
+        toast.success("Cluster created successfully");
         router.push(`/board/${id}`);
       })
       .catch(() => {
-        toast.error("Failed to create board");
+        toast.error("Failed to create cluster");
       });
   };
 
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <Image src="/note.svg" alt="No results found" width={110} height={110} />
-      <h2 className="text-2xl font-semibold mt-6">Create Your first board!</h2>
+      <h2 className="text-2xl font-semibold mt-6">
+        Create Your first cluster!
+      </h2>
       <p className="text-muted-foreground text-sm mt-2">
-        Start by creating a board for your workflow
+        Start by creating a cluster for your workflow
       </p>
       <div className="mt-6">
         <Button disabled={pending} onClick={onClick} size="lg">
-          Create board
+          Create Cluster
         </Button>
       </div>
     </div>

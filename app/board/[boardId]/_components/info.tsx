@@ -7,7 +7,7 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Hint } from "@/components/hint";
 import { api } from "@/convex/_generated/api";
-import { Actions } from "@/components/actins";
+import { Actions } from "@/components/actions";
 import { Button } from "@/components/ui/button";
 import { Id } from "@/convex/_generated/dataModel";
 import { useRenameModal } from "@/store/use-rename-modal";
@@ -40,14 +40,14 @@ export const Info = ({ boardId }: InfoProps) => {
       <Hint label="Go To Dashboard" side="bottom" sideOffset={10}>
         <Button asChild variant="board" className="px-2">
           <Link href={"/"}>
-            <Image src="/logo.svg" alt="logo" height={40} width={40} />
+            <Image src="/logo.svg" alt="logo" height={28} width={28} />
             <span
               className={cn(
                 "font-semibold text-xl ml-2 text-black",
                 font.className
               )}
             >
-              Board
+              Cluster
             </span>
           </Link>
         </Button>

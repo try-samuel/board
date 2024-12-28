@@ -35,11 +35,11 @@ export const RenameModal = () => {
     e.preventDefault();
     mutate({ id: initialValues.id, title })
       .then(() => {
-        toast.success("Board renamed successfully");
+        toast.success("Cluster renamed successfully");
         onClose();
       })
       .catch(() => {
-        toast.error("Failed to rename board");
+        toast.error("Failed to rename cluster");
       });
   };
 
@@ -47,9 +47,11 @@ export const RenameModal = () => {
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit board title</DialogTitle>
+          <DialogTitle>Edit cluster title</DialogTitle>
         </DialogHeader>
-        <DialogDescription>Enter a new title for this board</DialogDescription>
+        <DialogDescription>
+          Enter a new title for this cluster
+        </DialogDescription>
         <form onSubmit={onSave} className="space-y-4">
           <Input
             disabled={pending}
@@ -57,7 +59,7 @@ export const RenameModal = () => {
             maxLength={60}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter a title for this board"
+            placeholder="Enter a title for this cluster"
           />
           <DialogFooter>
             <DialogClose asChild>
