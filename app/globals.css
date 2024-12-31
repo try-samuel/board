@@ -81,3 +81,18 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+.sticky-note {
+  position: relative;
+}
+
+.sticky-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, rgb(128, 100, 254), transparent);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
