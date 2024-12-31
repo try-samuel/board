@@ -1,4 +1,5 @@
-import { Camera, Color, Point, Side, XYWH } from "@/types/canvas";
+import { Camera, Color, Layer, Point, Side, XYWH } from "@/types/canvas";
+import { LiveMap, LiveObject } from "@liveblocks/client";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -55,4 +56,43 @@ export function resizeBounds(bounds: XYWH, corner: Side, point: Point): XYWH {
   }
 
   return result;
+}
+export function findInterSectingLayersWithRectangle(
+  layerIds: readonly string[],
+  layers: LiveMap<string, LiveObject<Layer>>,
+  a: Point,
+  b: Point
+) {
+  const rect = {
+    x: Math.min(a.x, b.x),
+    y: Math.min(a.y, b.y),
+    width: Math.abs(a.x - b.x), // Fixed typo: 'with' -> 'width'
+    height: Math.abs(a.y - b.y),
+  };
+
+  const ids = [];
+
+  for (const layerId of layerIds) {
+    const layer = layers.get(layerId);
+
+    if (layer == null) {
+      continue;
+    }
+
+    const x = layer.get("x");
+    const y = layer.get("y");
+    const height = layer.get("height");
+    const width = layer.get("width");
+
+    if (
+      rect.x + rect.width > x &&
+      rect.x < x + width &&
+      rect.y + rect.height > y &&
+      rect.y < y + height
+    ) {
+      ids.push(layerId);
+    }
+  }
+
+  return ids;
 }
